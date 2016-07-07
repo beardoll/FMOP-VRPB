@@ -20,6 +20,7 @@ PROID = 6;
 %% cluster
 capacity = capacity(PROID);
 K = carnum(PROID);
+tic;
 [big_cluster] = fuzzymodel(Lx, Ly, Bx, By, demandL, demandB, repox, repoy, capacity, K);
 
 %% routing
@@ -78,11 +79,12 @@ for k = 1:K
 end
 
 %% local search
+reducecost = 0;
 [route, reducecost, routedemandL, routedemandB] = localsearch(dist_repo, dist_spot, demandL, demandB, capacity, path);   
-path = route;
-
+%path = route;
+toc;
 
 %% ×îÖÕ½á¹û
-totalcost = totalcost + reducecost;
+totalcost = totalcost + reducecost
 
 
